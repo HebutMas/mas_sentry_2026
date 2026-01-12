@@ -41,24 +41,6 @@ set(LOOPUNROLL ON CACHE BOOL "Enable loop unroll" FORCE)
 # 添加CMSIS-DSP库
 add_subdirectory(Drivers/CMSIS-DSP)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
-        # Release模式下DSP配置
-        -mcpu=cortex-m4
-        -mfpu=fpv4-sp-d16
-        -mfloat-abi=hard
-        -funroll-loops
-        -ffast-math
-    )
-else()
-    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
-        # 调试模式下DSP配置
-        -mcpu=cortex-m4
-        -mfpu=fpv4-sp-d16
-        -mfloat-abi=hard
-    )
-endif()
-
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 
