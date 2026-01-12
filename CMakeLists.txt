@@ -34,8 +34,51 @@ enable_language(C ASM)
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
+# 禁用f16以减小代码体积
+set(DISABLEFLOAT16 ON CACHE BOOL "Disable float16" FORCE)
+# 启用循环展开以提升性能
+set(LOOPUNROLL ON CACHE BOOL "Enable loop unroll" FORCE)
+# 添加CMSIS-DSP库
+add_subdirectory(Drivers/CMSIS-DSP)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
+        # Release模式下DSP配置
+        -mcpu=cortex-m4
+        -mfpu=fpv4-sp-d16
+        -mfloat-abi=hard
+        -funroll-loops
+        -ffast-math
+    )
+else()
+    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
+        # 调试模式下DSP配置
+        -mcpu=cortex-m4
+        -mfpu=fpv4-sp-d16
+        -mfloat-abi=hard
+    )
+endif()
+
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
+
+# 自动查找所有子目录中的 CMakeLists.txt (除了 cmake 目录)
+file(GLOB_RECURSE CMAKE_FILES 
+    LIST_DIRECTORIES false 
+    RELATIVE ${CMAKE_SOURCE_DIR}
+    "*/CMakeLists.txt"
+)
+# 遍历找到的 CMakeLists.txt 文件
+foreach(CMAKE_FILE ${CMAKE_FILES})
+    # 获取 CMakeLists.txt 所在的目录路径
+    get_filename_component(DIR ${CMAKE_FILE} DIRECTORY)
+    
+    # 排除 cmake 目录及其子目录，以及 tools/tinyusb 目录 cmsis-dsp目录
+    if(NOT DIR MATCHES "^cmake.*" AND NOT DIR MATCHES "^tools/tinyusb.*" AND NOT DIR MATCHES "^Drivers/CMSIS-DSP.*")
+        # 添加子目录
+        add_subdirectory(${DIR})
+    endif()
+endforeach()
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
@@ -50,11 +93,14 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    Drivers/CMSIS-DSP/Include
+    Drivers/CMSIS-DSP/PrivateInclude
 )
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined symbols
+    ARM_MATH_CM4
 )
 
 # Remove wrong libob.a library dependency when using cpp files
@@ -65,4 +111,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
 
     # Add user defined libraries
+    CMSISDSP
 )
