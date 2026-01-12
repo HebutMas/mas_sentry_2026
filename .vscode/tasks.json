@@ -1,0 +1,72 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build(debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "${workspaceFolder}/build/Debug",
+                "-j", "8"           
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "download dap(elf)",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "daplink.cfg",
+                "-c",
+                "program ./build/Debug/MAS_RM_DJIC.elf verify reset exit"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "JFlash Program",
+            "type": "shell",
+            "command": "/usr/bin/JFlash",  // 修改为安装JFlash的路径
+            "args": [
+                "-openprj", 
+                "${workspaceFolder}/MAS_RM_DJIC.jflash",
+                "-open",                
+                "${workspaceFolder}/build/Debug/MAS_RM_DJIC.elf",
+                "-auto",
+                "-exit"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "download st-link(elf)",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "st-link.cfg",
+                "-c",
+                "program ./build/Debug/MAS_RM_DJIC.elf verify reset exit"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+    ]
+}
