@@ -12,6 +12,9 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+# 设置目标芯片系列 (F4或H7)--用于BSP
+set(TARGET_FAMILY "F4")
+message("Target family: ${TARGET_FAMILY}")
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)

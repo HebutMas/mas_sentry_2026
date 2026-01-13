@@ -21,6 +21,17 @@
                 "samplesPerSecond": 4
             },
             "showDevDebugOutput": "raw",
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "decoders": [
+                    {
+                        "label": "",
+                        "port": 0,
+                        "type": "console"
+                    }
+                ]
+            }
         },
         //jlink
         {
@@ -72,6 +83,17 @@
                 "samplesPerSecond": 4
             },
             "showDevDebugOutput": "raw",
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "decoders": [
+                    {
+                        "label": "",
+                        "port": 0,
+                        "type": "console"
+                    }
+                ]
+            }
         },
     ],
 }
