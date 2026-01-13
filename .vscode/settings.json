@@ -4,6 +4,8 @@
     // 是否检查插件冲突
     "clangd.detectExtensionConflicts": true,
     "clangd.arguments": [
+        // 禁用头文件自动补全
+        "--header-insertion=never",
         // 在后台自动分析文件(基于 complie_commands)
         "--background-index",
         // 启用 Clang-Tidy 以提供「静态检查」
