@@ -2,14 +2,14 @@
  * @Author: laladuduqq 2807523947@qq.com
  * @Date: 2026-01-12 23:22:56
  * @LastEditors: laladuduqq 2807523947@qq.com
- * @LastEditTime: 2026-01-12 23:24:20
- * @FilePath: /MAS_RM_DAMIAOH7/README.MD
+ * @LastEditTime: 2026-01-13 10:26:34
+ * @FilePath: /MAS_RM_DJIC/README.MD
  * @Description: 
 -->
 # 项目简介
 山海机甲达妙H7开发板开发框架
 # 开发环境配置
-[开发环境配置](doc/开发环境搭建.MD)
+[开发环境配置](docs/开发环境搭建.MD)
 # 编译项目
 
 ```bash
@@ -31,17 +31,6 @@ make -j$(nproc)
 ```
 执行task.json的任务，根据daplink stlink jlink 区分
 ```
-
-# 📋 TODO清单
-- [ ] BSP层开发测试
-    - [ ] uart(polling/it/dma)
-    - [ ] spi(polling/it/dma)
-    - [ ] i2c(polling/it)
-    - [ ] adc(polling/it/dma)
-    - [ ] gpio_exti(it)
-    - [ ] can(polling/it)
-    - [ ] pwm(polling/it/dma)
-    - [ ] usb(it/dma) -- tinyusb
 # 🤝 贡献指南
 
 在提交代码前，请确保：
