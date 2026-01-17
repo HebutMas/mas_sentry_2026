@@ -58,8 +58,8 @@ foreach(CMAKE_FILE ${CMAKE_FILES})
     # 获取 CMakeLists.txt 所在的目录路径
     get_filename_component(DIR ${CMAKE_FILE} DIRECTORY)
     
-    # 排除 cmake 目录及其子目录，以及 tools/tinyusb 目录 cmsis-dsp目录
-    if(NOT DIR MATCHES "^cmake.*" AND NOT DIR MATCHES "^tools/tinyusb.*" AND NOT DIR MATCHES "^Drivers/CMSIS-DSP.*")
+    # 排除 cmake 目录及其子目录，以及 CherryUSB 目录 cmsis-dsp目录
+    if(NOT DIR MATCHES "^cmake.*" AND NOT DIR MATCHES "^Mas_User/TOOLS/CherryUSB.*" AND NOT DIR MATCHES "^Drivers/CMSIS-DSP.*")
         # 添加子目录
         add_subdirectory(${DIR})
     endif()
