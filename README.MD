@@ -2,7 +2,7 @@
  * @Author: laladuduqq 2807523947@qq.com
  * @Date: 2026-01-12 23:22:56
  * @LastEditors: laladuduqq 2807523947@qq.com
- * @LastEditTime: 2026-01-13 10:26:34
+ * @LastEditTime: 2026-01-19 21:55:47
  * @FilePath: /MAS_RM_DJIC/README.MD
  * @Description: 
 -->
@@ -14,8 +14,11 @@
 
 ```bash
 # 克隆项目
-git clone --recursive git@gitee.com:laladuduqq/mas_rm_dmh7.git (ssh)
-gut clone --recursive https://gitee.com/laladuduqq/mas_rm_dmh7.git (https)
+git clone --recursive git@gitee.com:laladuduqq/mas_rm_djic.git (ssh)
+git clone --recursive https://gitee.com/laladuduqq/mas_rm_djic.git (https)
+// 同步mas_user下的子目录
+cd mas_rm_djic/Mas_User
+git submodule update --init --recursive
 # 创建构建目录
 mkdir build && cd build
 # 配置CMake（Debug构建）
