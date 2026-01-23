@@ -37,6 +37,8 @@ enable_language(C ASM)
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
+# 确保链接完整的C库，支持浮点数格式化
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _printf_float")
 # 禁用f16以减小代码体积
 set(DISABLEFLOAT16 ON CACHE BOOL "Disable float16" FORCE)
 # 启用循环展开以提升性能
