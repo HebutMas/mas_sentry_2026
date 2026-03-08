@@ -1,6 +1,6 @@
 {
-    "cortex-debug.armToolchainPath": "/home/pan/ToolChains/arm-gnu-toolchain-15/bin",  // ARM 工具链路径,自己解压的路径
-    "cortex-debug.JLinkGDBServerPath": "/opt/SEGGER/JLink/JLinkGDBServer",  // JLink GDB Server 路径
+    "cortex-debug.armToolchainPath": "E:/RM/tool-chains/arm-gnu-toolchain/bin",  // ARM 工具链路径,自己解压的路径
+    "cortex-debug.JLinkGDBServerPath": "D:/jlink/JLink/JLinkGDBServer.exe",  // JLink GDB Server 路径
     // 是否检查插件冲突
     "clangd.detectExtensionConflicts": true,
     "clangd.arguments": [
