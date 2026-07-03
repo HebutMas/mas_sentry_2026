@@ -1,6 +1,0 @@
-[submodule "Drivers/CMSIS-DSP"]
-	path = Drivers/CMSIS-DSP
-	url = https://gitee.com/mirrors_ARM-software/CMSIS-DSP.git
-[submodule "Mas_User"]
-	path = Mas_User
-	url = https://gitee.com/laladuduqq/mas_user.git

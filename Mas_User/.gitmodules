@@ -1,0 +1,3 @@
+[submodule "TOOLS/CherryUSB"]
+	path = TOOLS/CherryUSB
+	url = https://gitee.com/woodman_112/CherryUSB.git
